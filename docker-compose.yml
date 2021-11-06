@@ -1,0 +1,40 @@
+version: '3.4'
+
+services:
+  nginx:
+    container_name: nginxsecureproxy
+    restart: always
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - ./public:/var/www/public
+      - ./certbot/conf:/etc/nginx/ssl
+      - ./certbot/data:/var/www/certbot
+      - ./certify:/etc/certify
+    ports:
+      - "80:80"
+      - "443:443"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: host
+      args:
+        - CERTBOT_EMAIL=${CERTBOT_MAIL}
+        - DOMAIN_LIST=${DOMAINLIST}
+
+# certify
+  # @reboot: check if lock file there
+    # if not: create new certificate
+    # if: try to renew certificate
+  # @montly: refresh certificate
+
+### HINTS        command: certonly --webroot --webroot-path=/var/www/certbot --email ${CERTBOT_MAIL} --agree-tos --no-eff-email -d ${DOMAINLIST}
+### HINTS        volumes:
+### HINTS            - ./certbot/conf:/etc/letsencrypt
+### HINTS            - ./certbot/logs:/var/log/letsencrypt
+### HINTS            - ./certbot/data:/var/www/certbot
+
+
+# networks:
+#   default:
+#     external: true
+#     name: nginxpassnet
