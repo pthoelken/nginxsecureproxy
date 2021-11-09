@@ -30,16 +30,18 @@ for strFileName in $strCertifyDomainFolder/*.*; do
     strDomainName=$(basename $strFileName)
     strMailAddress=$(head -n 1 $strFileName)
 
-    strFinalNginxConfig=$strNginxConfigPath/$strDomainName.conf
+    strFinalNginxConfig=$strNginxConfigPath/$strDomainName
 
     cp $strCertify80DefaultConfig $strFinalNginxConfig
     sed -i 's/'$strExampleDomainName'/'$strDomainName'/g' $strFinalNginxConfig
-    /etc/init.d/nginx reload
+    # /etc/init.d/nginx reload
 
     certbot certonly --non-interactive --webroot --webroot-path=/var/www/certbot --email $strMailAddress --agree-tos --no-eff-email -d $strDomainName
 
     echo "" >> $strFinalNginxConfig && cat $strCertify443DefaultConfig >> $strFinalNginxConfig
     sed -i 's/'$strExampleDomainName'/'$strDomainName'/g' $strFinalNginxConfig
+
+    mv $strFinalNginxConfig $strFinalNginxConfig.conf
 
     /etc/init.d/nginx reload
 
