@@ -33,7 +33,7 @@ for strFileName in $strCertifyDomainFolder/*.*; do
     sed -i 's/'$strExampleDomainName'/'$strDomainName'/g' $strNginxConfigPath/$strDomainName
     /etc/init.d/nginx reload
 
-    certbot certonly --webroot --webroot-path=/var/www/certbot --email ${CERTBOT_EMAIL} --agree-tos --no-eff-email -d $strDomainName
+    certbot certonly --non-interactive --webroot --webroot-path=/var/www/certbot --email ${CERTBOT_EMAIL} --agree-tos --no-eff-email -d $strDomainName
 
     rm -rf $strFileName
 done

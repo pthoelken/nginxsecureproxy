@@ -8,9 +8,10 @@ ARG CERTIFYPATH=/etc/certify/certify
 RUN  apt update \
       && /etc/init.d/nginx start \
       && apt -y upgrade \
-      && apt -y install cron certbot python-certbot-nginx bash wget \
-      && wget ${CERTIFYURL} -o ${CERTIFYPATH} \
-      && chmod +x ${CERTIFYPATH}/certify \
+      && apt -y install cron certbot python-certbot-nginx bash curl \
+      && mkdir -p /etc/certify/ \
+      && curl -Lo ${CERTIFYPATH} ${CERTIFYURL} \
+      && chmod +x ${CERTIFYPATH} \
       && ln -s ${CERTIFYPATH} /usr/bin/certify \
       && chmod +x /usr/bin/certify \
       && echo "@reboot certify" >>/etc/cron.d/certify \
