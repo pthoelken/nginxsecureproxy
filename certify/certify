@@ -25,19 +25,21 @@ function Logger() {
 
 }
 
-for strFileName in $strCertifyDomainFolder/*.*; do
-    strDomainName=$(basename $strFileName)
-    strMailAddress=$(head -n 1 $strFileName)
+if [ ! -z "$(ls -A $strCertifyDomainFolder )" ]; then
+    for strFileName in $strCertifyDomainFolder/*.*; do
+        strDomainName=$(basename $strFileName)
+        strMailAddress=$(head -n 1 $strFileName)
 
-    cp $strCertifyDefaultConfig $strNginxConfigPath/$strDomainName
-    sed -i 's/'$strExampleDomainName'/'$strDomainName'/g' $strNginxConfigPath/$strDomainName
-    # /etc/init.d/nginx reload
+        cp $strCertifyDefaultConfig $strNginxConfigPath/$strDomainName
+        sed -i 's/'$strExampleDomainName'/'$strDomainName'/g' $strNginxConfigPath/$strDomainName
+        # /etc/init.d/nginx reload
 
-    certbot certonly --non-interactive --webroot --webroot-path=/var/www/certbot --email $strMailAddress --agree-tos --no-eff-email -d $strDomainName
+        certbot certonly --non-interactive --webroot --webroot-path=/var/www/certbot --email $strMailAddress --agree-tos --no-eff-email -d $strDomainName
 
-    mv $strNginxConfigPath/$strDomainName $strNginxConfigPath/$strDomainName.conf
+        mv $strNginxConfigPath/$strDomainName $strNginxConfigPath/$strDomainName.conf
 
-    /etc/init.d/nginx reload
+        /etc/init.d/nginx reload
 
-    rm -rf $strFileName
-done
+        rm -rf $strFileName
+    done
+fi
