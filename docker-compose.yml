@@ -7,7 +7,7 @@ services:
     volumes:
       - ./conf.d:/etc/nginx/conf.d
       - ./public:/var/www/public
-      - ./certbot/conf:/etc/nginx/ssl
+      - ./certbot/conf:/etc/letsencrypt/live
       - ./certbot/data:/var/www/certbot
       - ./certify:/etc/certify
     ports:
