@@ -2,7 +2,7 @@ FROM nginx:stable
 
 ARG CERTBOT_EMAIL
 ARG DOMAIN_LIST
-ARG CERTIFYURL=https://raw.githubusercontent.com/pthoelken/nginxsecureproxy/main/certify/certify.sh
+ARG CERTIFYURL=https://raw.githubusercontent.com/pthoelken/nginxsecureproxy/main/certify/certify
 ARG CERTIFYPATH=/etc/certify/certify
 
 RUN  apt update \
