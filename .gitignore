@@ -1,3 +1,10 @@
 .env
 !.env.tpl
+
+certbot/*
+
 certify/domains/*
+!certify/certify
+!certify/domains
+!certify/log
+!certify/configs
