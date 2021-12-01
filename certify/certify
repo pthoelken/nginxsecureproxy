@@ -41,19 +41,19 @@ if [ ! -z "$(ls -A $strCertifyDomainFolder )" ]; then
         strNewString=/var/www/certbot/$strDomainName
         
         sed -i "s#$strOriginString#$strNewString#g" $strDefaultNginxConfig
-        /etc/init.d/nginx restart
+        /etc/init.d/nginx reload > /dev/null 2>&1
 
         certbot certonly --nginx -n --webroot --webroot-path=$strCertbotWebDir -m $strMailAddress --agree-tos -d $strDomainName
  
         sed -i "s#$strNewString#$strOriginString#g" $strDefaultNginxConfig
-        /etc/init.d/nginx restart
+        /etc/init.d/nginx reload > /dev/null 2>&1
        
         cp $strCertifyDefaultConfig $strNginxConfigPath/$strDomainName
         sed -i 's/'$strExampleDomainName'/'$strDomainName'/g' $strNginxConfigPath/$strDomainName
 
         mv $strNginxConfigPath/$strDomainName $strNginxConfigPath/$strDomainName.conf
 
-        /etc/init.d/nginx restart
+        /etc/init.d/nginx reload > /dev/null 2>&1
 
         rm -rf $strFileName
     done
