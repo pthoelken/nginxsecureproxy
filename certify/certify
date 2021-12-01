@@ -27,6 +27,7 @@ function Logger() {
 
 if [ ! -z "$(ls -A $strCertifyDomainFolder )" ]; then
     for strFileName in $strCertifyDomainFolder/*.*; do
+        
         strDomainName=$(basename $strFileName)
         strMailAddress=$(head -n 1 $strFileName)
 
@@ -42,7 +43,7 @@ if [ ! -z "$(ls -A $strCertifyDomainFolder )" ]; then
         sed -i "s#$strOriginString#$strNewString#g" $strDefaultNginxConfig
         /etc/init.d/nginx restart
 
-        certbot certonly --non-interactive --webroot --webroot-path=$strCertbotWebDir --email $strMailAddress --agree-tos --no-eff-email -d $strDomainName
+        certbot certonly --webroot --webroot-path=$strCertbotWebDir --email $strMailAddress --agree-tos --no-eff-email -d $strDomainName
  
         sed -i "s#$strNewString#$strOriginString#g" $strDefaultNginxConfig
         /etc/init.d/nginx restart
@@ -57,3 +58,5 @@ if [ ! -z "$(ls -A $strCertifyDomainFolder )" ]; then
         rm -rf $strFileName
     done
 fi
+
+exit 0
