@@ -43,7 +43,7 @@ if [ ! -z "$(ls -A $strCertifyDomainFolder )" ]; then
         sed -i "s#$strOriginString#$strNewString#g" $strDefaultNginxConfig
         /etc/init.d/nginx restart
 
-        certbot certonly --webroot --webroot-path=$strCertbotWebDir --email $strMailAddress --agree-tos --no-eff-email -d $strDomainName
+        certbot certonly --nginx -n --webroot --webroot-path=$strCertbotWebDir -m $strMailAddress --agree-tos -d $strDomainName
  
         sed -i "s#$strNewString#$strOriginString#g" $strDefaultNginxConfig
         /etc/init.d/nginx restart
