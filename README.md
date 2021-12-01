@@ -3,3 +3,10 @@ Custom Docker Container for NGiNX Proxy with SSL Encrytpion all in one Container
 
 # State
 WIP / Not Released
+
+# TODO 
+- finalize
+- log
+- correct html file
+- run.sh
+- gitignore

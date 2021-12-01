@@ -17,11 +17,3 @@ services:
       context: .
       dockerfile: Dockerfile
       network: host
-      args:
-        - CERTBOT_EMAIL=${CERTBOT_MAIL}
-        - DOMAIN_LIST=${DOMAINLIST}
-
-# networks:
-#   default:
-#     external: true
-#     name: nginxproxy
