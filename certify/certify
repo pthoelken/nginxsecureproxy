@@ -13,8 +13,6 @@ strCertifyDomainFolder=$strCertifyBaseFolder/domains
 strCertifyLogFolder=$strCertifyBaseFolder/log
 strCertifyLogFinalPath=$strCertifyLogFolder/certify_$strDate.log
 
-strDomainName=""
-
 function Logger() {
 
     if [ ! -f $strCertifyLogFinalPath ]; then
@@ -25,38 +23,52 @@ function Logger() {
 
 }
 
-if [ ! -z "$(ls -A $strCertifyDomainFolder )" ]; then
-    for strFileName in $strCertifyDomainFolder/*.*; do
-        
-        strDomainName=$(basename $strFileName)
-        strMailAddress=$(head -n 1 $strFileName)
+function init() {
+    # INIT CONTAINER
+}
 
-        # strCertBotOrigin=/var/www/certbot
-        strCertbotWebDir=/var/www/certbot/$strDomainName
-        mkdir -p $strCertbotWebDir
-        chown -R nginx:nginx /var/www/
+function ReloadNginxService() {
+    /etc/init.d/nginx reload
+}
 
-        strDefaultNginxConfig=/etc/nginx/conf.d/80-default.conf
-        strOriginString=/var/www/certbot
-        strNewString=/var/www/certbot/$strDomainName
-        
-        sed -i "s#$strOriginString#$strNewString#g" $strDefaultNginxConfig
-        /etc/init.d/nginx reload > /dev/null 2>&1
+function RegisterCertificate() {
+    strDomainName=$2
+    strMailAddress=$3
+    strCertbotWebDir=/var/www/certbot/$strDomainName
 
-        certbot certonly -n --webroot --webroot-path=$strCertbotWebDir -m $strMailAddress --agree-tos -d $strDomainName
- 
-        sed -i "s#$strNewString#$strOriginString#g" $strDefaultNginxConfig
-        /etc/init.d/nginx reload > /dev/null 2>&1
-       
-        cp $strCertifyDefaultConfig $strNginxConfigPath/$strDomainName
-        sed -i 's/'$strExampleDomainName'/'$strDomainName'/g' $strNginxConfigPath/$strDomainName
+    mkdir -p $strCertbotWebDir
+    chown -R nginx:nginx /var/www/
 
-        mv $strNginxConfigPath/$strDomainName $strNginxConfigPath/$strDomainName.conf
+    strDefaultNginxConfig=/etc/nginx/conf.d/80-default.conf
+    strOriginString=/var/www/certbot
+    strNewString=/var/www/certbot/$strDomainName
 
-        /etc/init.d/nginx reload > /dev/null 2>&1
+    sed -i "s#$strOriginString#$strNewString#g" $strDefaultNginxConfig
 
-        rm -rf $strFileName
-    done
-fi
+    /etc/init.d/nginx reload > /dev/null 2>&1
+
+    certbot certonly -n --webroot --webroot-path=$strCertbotWebDir -m $strMailAddress --agree-tos -d $strDomainName
+
+    sed -i "s#$strNewString#$strOriginString#g" $strDefaultNginxConfig
+
+    /etc/init.d/nginx reload > /dev/null 2>&1
+
+    cp $strCertifyDefaultConfig $strNginxConfigPath/$strDomainName
+
+    sed -i 's/'$strExampleDomainName'/'$strDomainName'/g' $strNginxConfigPath/$strDomainName
+
+    mv $strNginxConfigPath/$strDomainName $strNginxConfigPath/$strDomainName.conf
+
+    /etc/init.d/nginx reload > /dev/null 2>&1
+}
+
+case "$1" in
+        "--newcert" )
+        RegisterCertificate
+        ;;
+        *) 
+        echo "Invalid Option" 
+        exit 1;;
+   esac
 
 exit 0

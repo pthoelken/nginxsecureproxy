@@ -5,10 +5,10 @@ services:
     container_name: nginxsecureproxy
     restart: always
     volumes:
-      - ./conf.d:/etc/nginx/conf.d
-      - ./public:/var/www/public
-      - ./certbot/conf:/etc/letsencrypt/live
-      - ./certbot/webdata:/var/www/certbot
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/public:/var/www/public
+      - ./certify/certbot/conf:/etc/letsencrypt/live
+      - ./certify/certbot/webdata:/var/www/certbot
       - ./certify:/etc/certify
     ports:
       - "80:80"
