@@ -47,19 +47,26 @@ function RegisterCertificate() {
 
     /etc/init.d/nginx reload > /dev/null 2>&1
 
-    certbot certonly -n --webroot --webroot-path=$strCertbotWebDir -m $strMailAddress --agree-tos -d $strDomainName
+    if (certbot certonly -n --webroot --webroot-path=$strCertbotWebDir -m $strMailAddress --agree-tos -d $strDomainName); then
+        sed -i "s#$strNewString#$strOriginString#g" $strDefaultNginxConfig
 
-    sed -i "s#$strNewString#$strOriginString#g" $strDefaultNginxConfig
+        /etc/init.d/nginx reload > /dev/null 2>&1
 
-    /etc/init.d/nginx reload > /dev/null 2>&1
+        cp $strCertifyDefaultConfig $strNginxConfigPath/$strDomainName
 
-    cp $strCertifyDefaultConfig $strNginxConfigPath/$strDomainName
+        sed -i 's/'$strExampleDomainName'/'$strDomainName'/g' $strNginxConfigPath/$strDomainName
 
-    sed -i 's/'$strExampleDomainName'/'$strDomainName'/g' $strNginxConfigPath/$strDomainName
+        mv $strNginxConfigPath/$strDomainName $strNginxConfigPath/$strDomainName.conf
 
-    mv $strNginxConfigPath/$strDomainName $strNginxConfigPath/$strDomainName.conf
-
-    /etc/init.d/nginx reload > /dev/null 2>&1
+        /etc/init.d/nginx reload > /dev/null 2>&1
+    else
+        sed -i "s#$strNewString#$strOriginString#g" $strDefaultNginxConfig
+        rm -rf $strCertbotWebDir
+        rm -rf /etc/letsencrypt/live/$strDomainName*
+        echo "unsuccessfull - check logs"
+        exit 1
+    fi
+    
 }
 
 case "$1" in

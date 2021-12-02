@@ -1,10 +1,6 @@
-.env
 !.env.tpl
 
-certbot/
-
-certify/domains/*
-!certify/certify
-!certify/domains
-!certify/log
-!certify/configs
+.env
+letsencrypt.log
+certbot/conf
+certbot/webdata

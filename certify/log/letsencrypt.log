@@ -1,0 +1,118 @@
+2021-12-02 19:19:26,815:DEBUG:certbot._internal.main:certbot version: 1.12.0
+2021-12-02 19:19:26,815:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/bin/certbot
+2021-12-02 19:19:26,815:DEBUG:certbot._internal.main:Arguments: ['-n', '--webroot', '--webroot-path=/var/www/certbot/monitoring.snowes.de', '-m', 'info@quentoomedia.de', '--agree-tos', '-d', 'monitoring.snowes.de']
+2021-12-02 19:19:26,815:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#manual,PluginEntryPoint#nginx,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2021-12-02 19:19:26,825:DEBUG:certbot._internal.log:Root logging level set at 20
+2021-12-02 19:19:26,825:INFO:certbot._internal.log:Saving debug log to /var/log/letsencrypt/letsencrypt.log
+2021-12-02 19:19:26,827:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2021-12-02 19:19:26,827:DEBUG:certbot._internal.plugins.selection:Single candidate plugin: * webroot
+Description: Place files in webroot directory
+Interfaces: IAuthenticator, IPlugin
+Entry point: webroot = certbot._internal.plugins.webroot:Authenticator
+Initialized: <certbot._internal.plugins.webroot.Authenticator object at 0x7f38bea22940>
+Prep: True
+2021-12-02 19:19:26,828:DEBUG:certbot._internal.plugins.selection:Selected authenticator <certbot._internal.plugins.webroot.Authenticator object at 0x7f38bea22940> and installer None
+2021-12-02 19:19:26,828:INFO:certbot._internal.plugins.selection:Plugins selected: Authenticator webroot, Installer None
+2021-12-02 19:19:26,867:DEBUG:acme.client:Sending GET request to https://acme-v02.api.letsencrypt.org/directory.
+2021-12-02 19:19:26,868:DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org:443
+2021-12-02 19:19:27,669:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "GET /directory HTTP/1.1" 503 178
+2021-12-02 19:19:27,669:DEBUG:acme.client:Received response:
+HTTP 503
+Server: nginx
+Date: Thu, 02 Dec 2021 19:18:34 GMT
+Content-Type: application/problem+json
+Content-Length: 178
+Connection: keep-alive
+ETag: "611d36fb-b2"
+
+{
+  "type": "urn:acme:error:serverInternal",
+  "detail": "The service is down for maintenance or had an internal error. Check https://letsencrypt.status.io/ for more details."
+}
+
+2021-12-02 19:19:27,670:DEBUG:certbot._internal.log:Exiting abnormally:
+Traceback (most recent call last):
+  File "/usr/bin/certbot", line 33, in <module>
+    sys.exit(load_entry_point('certbot==1.12.0', 'console_scripts', 'certbot')())
+  File "/usr/lib/python3/dist-packages/certbot/main.py", line 15, in main
+    return internal_main.main(cli_args)
+  File "/usr/lib/python3/dist-packages/certbot/_internal/main.py", line 1413, in main
+    return config.func(config, plugins)
+  File "/usr/lib/python3/dist-packages/certbot/_internal/main.py", line 1276, in certonly
+    le_client = _init_le_client(config, auth, installer)
+  File "/usr/lib/python3/dist-packages/certbot/_internal/main.py", line 651, in _init_le_client
+    acc, acme = _determine_account(config)
+  File "/usr/lib/python3/dist-packages/certbot/_internal/main.py", line 568, in _determine_account
+    acc, acme = client.register(
+  File "/usr/lib/python3/dist-packages/certbot/_internal/client.py", line 173, in register
+    acme = acme_from_config_key(config, key)
+  File "/usr/lib/python3/dist-packages/certbot/_internal/client.py", line 43, in acme_from_config_key
+    return acme_client.BackwardsCompatibleClientV2(net, key, config.server)
+  File "/usr/lib/python3/dist-packages/acme/client.py", line 831, in __init__
+    directory = messages.Directory.from_json(net.get(server).json())
+  File "/usr/lib/python3/dist-packages/acme/client.py", line 1167, in get
+    return self._check_response(
+  File "/usr/lib/python3/dist-packages/acme/client.py", line 1072, in _check_response
+    raise messages.Error.from_json(jobj)
+acme.messages.Error: urn:acme:error:serverInternal :: The server experienced an internal error :: The service is down for maintenance or had an internal error. Check https://letsencrypt.status.io/ for more details.
+2021-12-02 19:19:27,671:ERROR:certbot._internal.log:An unexpected error occurred:
+2021-12-02 19:19:27,671:ERROR:certbot._internal.log:The server experienced an internal error :: The service is down for maintenance or had an internal error. Check https://letsencrypt.status.io/ for more details.
+2021-12-02 19:20:40,967:DEBUG:certbot._internal.main:certbot version: 1.12.0
+2021-12-02 19:20:40,967:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/bin/certbot
+2021-12-02 19:20:40,967:DEBUG:certbot._internal.main:Arguments: ['-n', '--webroot', '--webroot-path=/var/www/certbot/datastore.snowes.de', '-m', 'info@quentoomedia.de', '--agree-tos', '-d', 'datastore.snowes.de']
+2021-12-02 19:20:40,967:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#manual,PluginEntryPoint#nginx,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2021-12-02 19:20:40,977:DEBUG:certbot._internal.log:Root logging level set at 20
+2021-12-02 19:20:40,977:INFO:certbot._internal.log:Saving debug log to /var/log/letsencrypt/letsencrypt.log
+2021-12-02 19:20:40,978:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2021-12-02 19:20:40,978:DEBUG:certbot._internal.plugins.selection:Single candidate plugin: * webroot
+Description: Place files in webroot directory
+Interfaces: IAuthenticator, IPlugin
+Entry point: webroot = certbot._internal.plugins.webroot:Authenticator
+Initialized: <certbot._internal.plugins.webroot.Authenticator object at 0x7f4015fcd8b0>
+Prep: True
+2021-12-02 19:20:40,978:DEBUG:certbot._internal.plugins.selection:Selected authenticator <certbot._internal.plugins.webroot.Authenticator object at 0x7f4015fcd8b0> and installer None
+2021-12-02 19:20:40,979:INFO:certbot._internal.plugins.selection:Plugins selected: Authenticator webroot, Installer None
+2021-12-02 19:20:41,010:DEBUG:acme.client:Sending GET request to https://acme-v02.api.letsencrypt.org/directory.
+2021-12-02 19:20:41,011:DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org:443
+2021-12-02 19:20:41,438:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "GET /directory HTTP/1.1" 503 178
+2021-12-02 19:20:41,439:DEBUG:acme.client:Received response:
+HTTP 503
+Server: nginx
+Date: Thu, 02 Dec 2021 19:19:48 GMT
+Content-Type: application/problem+json
+Content-Length: 178
+Connection: keep-alive
+ETag: "611d36fb-b2"
+
+{
+  "type": "urn:acme:error:serverInternal",
+  "detail": "The service is down for maintenance or had an internal error. Check https://letsencrypt.status.io/ for more details."
+}
+
+2021-12-02 19:20:41,439:DEBUG:certbot._internal.log:Exiting abnormally:
+Traceback (most recent call last):
+  File "/usr/bin/certbot", line 33, in <module>
+    sys.exit(load_entry_point('certbot==1.12.0', 'console_scripts', 'certbot')())
+  File "/usr/lib/python3/dist-packages/certbot/main.py", line 15, in main
+    return internal_main.main(cli_args)
+  File "/usr/lib/python3/dist-packages/certbot/_internal/main.py", line 1413, in main
+    return config.func(config, plugins)
+  File "/usr/lib/python3/dist-packages/certbot/_internal/main.py", line 1276, in certonly
+    le_client = _init_le_client(config, auth, installer)
+  File "/usr/lib/python3/dist-packages/certbot/_internal/main.py", line 651, in _init_le_client
+    acc, acme = _determine_account(config)
+  File "/usr/lib/python3/dist-packages/certbot/_internal/main.py", line 568, in _determine_account
+    acc, acme = client.register(
+  File "/usr/lib/python3/dist-packages/certbot/_internal/client.py", line 173, in register
+    acme = acme_from_config_key(config, key)
+  File "/usr/lib/python3/dist-packages/certbot/_internal/client.py", line 43, in acme_from_config_key
+    return acme_client.BackwardsCompatibleClientV2(net, key, config.server)
+  File "/usr/lib/python3/dist-packages/acme/client.py", line 831, in __init__
+    directory = messages.Directory.from_json(net.get(server).json())
+  File "/usr/lib/python3/dist-packages/acme/client.py", line 1167, in get
+    return self._check_response(
+  File "/usr/lib/python3/dist-packages/acme/client.py", line 1072, in _check_response
+    raise messages.Error.from_json(jobj)
+acme.messages.Error: urn:acme:error:serverInternal :: The server experienced an internal error :: The service is down for maintenance or had an internal error. Check https://letsencrypt.status.io/ for more details.
+2021-12-02 19:20:41,440:ERROR:certbot._internal.log:An unexpected error occurred:
+2021-12-02 19:20:41,440:ERROR:certbot._internal.log:The server experienced an internal error :: The service is down for maintenance or had an internal error. Check https://letsencrypt.status.io/ for more details.

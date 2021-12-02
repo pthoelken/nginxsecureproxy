@@ -10,6 +10,7 @@ services:
       - ./certify/certbot/conf:/etc/letsencrypt/live
       - ./certify/certbot/webdata:/var/www/certbot
       - ./certify:/etc/certify
+      - ./certify/log:/var/log/letsencrypt
     ports:
       - "80:80"
       - "443:443"
