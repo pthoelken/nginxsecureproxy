@@ -24,7 +24,7 @@ function Logger() {
 }
 
 function init() {
-    # INIT CONTAINER
+    echo "init"
 }
 
 function ReloadNginxService() {
@@ -32,8 +32,8 @@ function ReloadNginxService() {
 }
 
 function RegisterCertificate() {
-    strDomainName=$2
-    strMailAddress=$3
+    strDomainName=$1
+    strMailAddress=$2
     strCertbotWebDir=/var/www/certbot/$strDomainName
 
     mkdir -p $strCertbotWebDir
@@ -64,11 +64,12 @@ function RegisterCertificate() {
 
 case "$1" in
         "--newcert" )
-        RegisterCertificate
+        RegisterCertificate $2 $3
         ;;
         *) 
-        echo "Invalid Option" 
-        exit 1;;
+        echo "Invalid Option"
+        exit 1
+        ;;
    esac
 
 exit 0
