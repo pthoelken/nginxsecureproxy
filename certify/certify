@@ -4,6 +4,10 @@ strDate=$(date +%Y-%m-%d)
 
 strCertifyBaseFolder=/etc/certify
 
+strB64HTMLPublicPage=RG9tYWluIGlzIHN1Y2Nlc3NmdWxseSBhZGRlZC4gUGxlYXNlIGNvbmZpZ3VyZSAtIGlmIHlvdSB3YW50IC0geW91ciBzaXRlIGNvbmZpZyBpbiAuL25naW54L2NvbmYuZC95b3VyLmRvbWFpbi5jb25mIGFuZCBydW4gdGhlIGNvbW1hbmQ6IDxiciAvPg0KPGxpPmRvY2tlciBleGVjIC1pdCBuZ2lueHNlY3VyZXByb3h5IGNlcnRpZnkgcmVsb2FkPC9saT4=
+strB64defaultNginxConfig80=c2VydmVyIHsNCiAgICBsaXN0ZW4gODA7DQogICAgbGlzdGVuIFs6Ol06ODA7DQogICAgc2VydmVyX25hbWUgXzsNCiAgICANCiAgICBsb2NhdGlvbiB+IC8ud2VsbC1rbm93bi9hY21lLWNoYWxsZW5nZSB7DQogICAgICAgIGFsbG93IGFsbDsgDQogICAgICAgIHJvb3QgL3Zhci93d3cvY2VydGJvdDsNCiAgICB9DQoNCiAgICBsb2NhdGlvbiB+IC8gew0KICAgICAgICBhbGxvdyBhbGw7IA0KICAgICAgICByZXR1cm4gMzAxIGh0dHBzOi8vZ29vZ2xlLmNvbTsNCiAgICB9DQoNCn0=
+strB64defaultCertifyNginxConfig=c2VydmVyIHsNCiAgICBsaXN0ZW4gODA7DQogICAgbGlzdGVuIFs6Ol06ODA7DQogICAgc2VydmVyX25hbWUgZXhhbXBsZS5vcmc7DQogICAgDQogICAgbG9jYXRpb24gfiAvLndlbGwta25vd24vYWNtZS1jaGFsbGVuZ2Ugew0KICAgICAgICBhbGxvdyBhbGw7IA0KICAgICAgICByb290IC92YXIvd3d3L2NlcnRib3QvZXhhbXBsZS5vcmc7DQogICAgfQ0KICAgIA0KICAgIGxvY2F0aW9uIH4gLyB7DQogICAgICAgIGFsbG93IGFsbDsgDQogICAgICAgIHJldHVybiAzMDEgaHR0cHM6Ly8kaG9zdCRyZXF1ZXN0X3VyaTsNCiAgICB9DQp9DQoNCnNlcnZlciB7DQogICAgICAgICAgbGlzdGVuIFs6Ol06NDQzIHNzbCBodHRwMjsNCiAgICAgICAgICBsaXN0ZW4gNDQzIHNzbCBodHRwMjsNCg0KICAgICAgICAgIHNlcnZlcl9uYW1lICAgICAgICAgICAgICAgICAgZXhhbXBsZS5vcmc7DQoNCiAgICAgICAgICBnemlwICAgICAgICAgICAgICAgICAgICAgICAgIG9uOw0KICAgICAgICAgIGd6aXBfY29tcF9sZXZlbCAgICAgICAgICAgICAgMjsNCiAgICAgICAgICBnemlwX21pbl9sZW5ndGggICAgICAgICAgICAgIDEwMjQ7DQogICAgICAgICAgZ3ppcF92YXJ5ICAgICAgICAgICAgICAgICAgICBvbjsNCiAgICAgICAgICBnemlwX3Byb3hpZWQgICAgICAgICAgICAgICAgIGV4cGlyZWQgbm8tY2FjaGUgbm8tc3RvcmUgcHJpdmF0ZSBhdXRoOw0KICAgICAgICAgIGd6aXBfdHlwZXMgICAgICAgICAgICAgICAgICAgYXBwbGljYXRpb24veC1qYXZhc2NyaXB0IGFwcGxpY2F0aW9uL2phdmFzY3JpcHQgYXBwbGljYXRpb24veG1sIGFwcGxpY2F0aW9uL2pzb24gdGV4dC94bWwgdGV4dC9jc3MgdGV4dCQNCiAgICAgICAgICBjbGllbnRfYm9keV90aW1lb3V0ICAgICAgICAgIDEyOw0KICAgICAgICAgIGNsaWVudF9oZWFkZXJfdGltZW91dCAgICAgICAgMTI7DQogICAgICAgICAgcmVzZXRfdGltZWRvdXRfY29ubmVjdGlvbiAgICBvbjsNCiAgICAgICAgICBwcm94eV9jb25uZWN0X3RpbWVvdXQgICAgICAgIDYwMDsNCiAgICAgICAgICBwcm94eV9zZW5kX3RpbWVvdXQgICAgICAgICAgIDYwMDsNCiAgICAgICAgICBwcm94eV9yZWFkX3RpbWVvdXQgICAgICAgICAgIDYwMDsNCiAgICAgICAgICBzZW5kX3RpbWVvdXQgICAgICAgICAgICAgICAgIDYwMDsNCiAgICAgICAgICBzZXJ2ZXJfdG9rZW5zICAgICAgICAgICAgICAgIG9mZjsNCiAgICAgICAgICBjbGllbnRfbWF4X2JvZHlfc2l6ZSAgICAgICAgIDUwbTsNCg0KICAgICAgICAgIGV4cGlyZXMgICAgICAgICAgICAgICAgICAgICAgMXk7DQogICAgICAgICAgYWNjZXNzX2xvZyAgICAgICAgICAgICAgICAgICBvZmY7DQogICAgICAgICAgbG9nX25vdF9mb3VuZCAgICAgICAgICAgICAgICBvZmY7DQogICAgICAgICAgDQogICAgICAgICAgc3NsX2NlcnRpZmljYXRlICAgICAgICAgICAgIC9ldGMvbGV0c2VuY3J5cHQvbGl2ZS9leGFtcGxlLm9yZy9mdWxsY2hhaW4ucGVtOw0KICAgICAgICAgIHNzbF9jZXJ0aWZpY2F0ZV9rZXkgICAgICAgICAvZXRjL2xldHNlbmNyeXB0L2xpdmUvZXhhbXBsZS5vcmcvcHJpdmtleS5wZW07DQoNCiAgICAgICAgICByb290ICAgICAgICAgICAgICAgICAgICAgICAgIC92YXIvd3d3L3B1YmxpYy87DQoNCiAgICAgICAgICBsb2NhdGlvbiAvIHsNCg0KICAgICAgICAgICAgDQogICAgICAgICAgICBwcm94eV9odHRwX3ZlcnNpb24gICAgICAgICAgMS4xOw0KICAgICAgICAgICAgcHJveHlfc2V0X2hlYWRlciAgICAgICAgICAgIFgtRm9yd2FyZGVkLUhvc3QgJGhvc3Q7DQogICAgICAgICAgICBwcm94eV9zZXRfaGVhZGVyICAgICAgICAgICAgWC1Gb3J3YXJkZWQtU2VydmVyICRob3N0Ow0KICAgICAgICAgICAgcHJveHlfc2V0X2hlYWRlciAgICAgICAgICAgIFgtUmVhbC1JUCAkcmVtb3RlX2FkZHI7DQogICAgICAgICAgICBwcm94eV9zZXRfaGVhZGVyICAgICAgICAgICAgWC1Gb3J3YXJkZWQtRm9yICRwcm94eV9hZGRfeF9mb3J3YXJkZWRfZm9yOw0KICAgICAgICAgICAgcHJveHlfc2V0X2hlYWRlciAgICAgICAgICAgIFgtRm9yd2FyZGVkLVByb3RvICRzY2hlbWU7DQogICAgICAgICAgICBwcm94eV9zZXRfaGVhZGVyICAgICAgICAgICAgSG9zdCAkaHR0cF9ob3N0Ow0KICAgICAgICAgICAgcHJveHlfc2V0X2hlYWRlciAgICAgICAgICAgIFVwZ3JhZGUgJGh0dHBfdXBncmFkZTsNCiAgICAgICAgICAgIHByb3h5X3NldF9oZWFkZXIgICAgICAgICAgICBDb25uZWN0aW9uICJVcGdyYWRlIjsNCiAgICAgICAgICAgIHByb3h5X3Bhc3NfcmVxdWVzdF9oZWFkZXJzICBvbjsNCg0KICAgICAgICAgICAgcm9vdCAgICAgICAgICAgICAgICAgICAgICAgIC92YXIvd3d3L3B1YmxpYzsNCg0KICAgICAgICAgICAgIyBwcm94eV9wYXNzICAgICAgICAgICAgICAgICAgaHR0cDovL2V4YW1wbGUub3JnOw0KDQogICAgICAgICAgfQ0KfQ==
+
 strCertifyConfigFolder=$strCertifyBaseFolder/configs
 strCertifyDefaultConfig=$strCertifyConfigFolder/foo.bar.conf
 strNginxConfigPath=/etc/nginx/conf.d
@@ -12,6 +16,8 @@ strExampleDomainName=example.org
 strCertifyDomainFolder=$strCertifyBaseFolder/domains
 strCertifyLogFolder=$strCertifyBaseFolder/log
 strCertifyLogFinalPath=$strCertifyLogFolder/certify_$strDate.log
+
+strDefaultNginxConfig=/etc/nginx/conf.d/80-default.conf
 
 function Logger() {
 
@@ -24,7 +30,15 @@ function Logger() {
 }
 
 function init() {
-    echo "init"
+    if [ ! -f $strDefaultNginxConfig ]; then
+        echo $strB64defaultNginxConfig80 | base64 --decode > $strDefaultNginxConfig
+        chown nginx:nginx $strDefaultNginxConfig
+        /etc/init.d/nginx reload
+    fi
+
+    if [ ! -f $strCertifyDefaultConfig ]; then
+        echo $strB64defaultNginxConfig80 | base64 --decode > $strCertifyDefaultConfig
+    fi
 }
 
 function ReloadNginxService() {
@@ -39,7 +53,7 @@ function RegisterCertificate() {
     mkdir -p $strCertbotWebDir
     chown -R nginx:nginx /var/www/
 
-    strDefaultNginxConfig=/etc/nginx/conf.d/80-default.conf
+    
     strOriginString=/var/www/certbot
     strNewString=/var/www/certbot/$strDomainName
 
@@ -58,6 +72,9 @@ function RegisterCertificate() {
 
         mv $strNginxConfigPath/$strDomainName $strNginxConfigPath/$strDomainName.conf
 
+        echo $strB64HTMLPublicPage | base64 --decode > /var/www/public/index.html
+        chown nginx:nginx /var/www/public/index.html
+
         /etc/init.d/nginx reload > /dev/null 2>&1
     else
         sed -i "s#$strNewString#$strOriginString#g" $strDefaultNginxConfig
@@ -72,6 +89,12 @@ function RegisterCertificate() {
 case "$1" in
         "--newcert" )
         RegisterCertificate $2 $3
+        ;;
+        "--init" )
+        init
+        ;;
+        "--reload" )
+        ReloadNginxService
         ;;
         *) 
         echo "Invalid Option"

@@ -6,11 +6,9 @@ services:
     restart: always
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/public:/var/www/public
-      - ./certify/certbot/conf:/etc/letsencrypt/live
-      - ./certify/certbot/webdata:/var/www/certbot
-      - ./certify:/etc/certify
-      - ./certify/log:/var/log/letsencrypt
+      - ./cert/webdata:/var/www/certbot
+      - ./cert/certificates:/etc/letsencrypt/live
+      - ./cert/log:/var/log/letsencrypt
     ports:
       - "80:80"
       - "443:443"
