@@ -41,7 +41,7 @@ function init() {
 
     if [ ! -f $strCertifyDefaultConfig ]; then
         Logger INFO "Extract the default 80 config file or certify"
-        echo $strB64defaultNginxConfig80 | base64 --decode > $strCertifyDefaultConfig
+        echo $strB64defaultCertifyNginxConfig | base64 --decode > $strCertifyDefaultConfig
     else
         Logger INFO "Init was already complete ..."
     fi
