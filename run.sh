@@ -23,8 +23,15 @@ function PublishImage() {
 
 function DebugImage() {
 
-    docker stop $(docker ps -a -q)
-    docker rm $(docker ps -a -q)
+    cd $strDebugFolder
+
+    if [ -f $strDebugFolder/.git ]; then
+        git pull
+    else
+        git clone git@github.com:pthoelken/nginxsecureproxy.git .
+    fi
+
+    docker-compose down
     docker image prune -a -f
     docker container prune -f
 
@@ -36,7 +43,7 @@ function DebugImage() {
         mkdir -p $strDebugFolder
     fi
 
-    cd $strDebugFolder
+    
     curl -Lo $strDebugDockerComposeFile $strDockerComposeURL
     docker-compose up -d
 }
