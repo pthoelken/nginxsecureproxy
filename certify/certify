@@ -25,24 +25,31 @@ function Logger() {
         touch $strCertifyLogFinalPath
     fi 
 
-    echo -e "$strDate || $1" >> $strCertifyLogFinalPath
+    echo -e "$strDate | $1 | $2" >> $strCertifyLogFinalPath
 
 }
 
 function init() {
     if [ ! -f $strDefaultNginxConfig ]; then
+        Logger INFO "Extract 80 Default Nginx Conifguration file"
         echo $strB64defaultNginxConfig80 | base64 --decode > $strDefaultNginxConfig
         chown nginx:nginx $strDefaultNginxConfig
         /etc/init.d/nginx reload
     fi
 
     if [ ! -f $strCertifyDefaultConfig ]; then
+        Logger INFO "Extract the default 80 config file or certify"
         echo $strB64defaultNginxConfig80 | base64 --decode > $strCertifyDefaultConfig
     fi
 }
 
 function ReloadNginxService() {
-    /etc/init.d/nginx reload
+    if (/etc/init.d/nginx reload); then
+        Logger INFO "Nginx Server reloaded successfully"
+    else
+        Logger ERROR "Problem with reloading Nginx Server"
+    fi
+
 }
 
 function RegisterCertificate() {
@@ -78,11 +85,13 @@ function RegisterCertificate() {
         chown nginx:nginx $strWebDir/index.html
 
         /etc/init.d/nginx reload > /dev/null 2>&1
+
+        Logger INFO "Certbot was successfull with $strDomainName"
     else
         sed -i "s#$strNewString#$strOriginString#g" $strDefaultNginxConfig
         rm -rf $strCertbotWebDir
         rm -rf /etc/letsencrypt/live/$strDomainName*
-        echo "unsuccessfull - check logs"
+        Logger ERROR "Certbot was not successfull with $strDomainName! Please check your logs from letsencrypt!"
         exit 1
     fi
     

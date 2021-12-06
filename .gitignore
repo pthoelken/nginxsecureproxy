@@ -1,6 +1,2 @@
-!.env.tpl
-
-.env
-letsencrypt.log
-certbot/conf
-certbot/webdata
+nginx/
+cert/
