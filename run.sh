@@ -42,13 +42,13 @@ function DebugImage() {
 }
 
 case "$1" in
-        "--build" )
+        "--build")
         BuildImage
         ;;
-        "--debug" )
+        "--debug")
         DebugImage
         ;;
-        "--publish" )
+        "--publish")
         BuildImage
         PublishImage
         ;;
