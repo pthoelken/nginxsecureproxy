@@ -20,5 +20,3 @@ RUN echo "PATH=$PATH" > /etc/cron.d/certify-init
 RUN rm -rf /var/lib/apt/lists/*
 
 CMD [ "sh", "-c", "cron && nginx -g 'daemon off;'" ]
-
-# python-certbot-nginx
