@@ -12,17 +12,17 @@ strDebugFolder=./debug
 strDebugDockerComposeFile=$strDebugFolder/docker-compose.yml
 strDockerComposeURL=https://raw.githubusercontent.com/pthoelken/nginxsecureproxy/main/docker-compose.yml
 
-function Build() {
+function BuildImage() {
     docker build -t $strDockerImageName .
     docker image tag $strDockerImageName $strDockerHubUsername/$strDockerImageName:$strDockerImageTag
 }
 
-function Publish() {
+function PublishImage() {
     docker login -u $strDockerHubUsername
     docker image push $strDockerHubUsername/$strDockerImageName:$strDockerImageTag
 }
 
-function Debug() {
+function DebugImage() {
 
     docker stop $(docker ps -a -q)
     docker rm $(docker ps -a -q)
@@ -44,14 +44,14 @@ function Debug() {
 
 case "$1" in
         "--build" )
-        Build
+        BuildImage
         ;;
         "--debug" )
-        Debug
+        DebugImage
         ;;
         "--publish" )
-        Build
-        Publish
+        BuildImage
+        PublishImage
         ;;
         *)
         echo "Unknown argument for $0 please use {--build | --debug | --publish}"
