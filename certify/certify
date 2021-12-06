@@ -30,6 +30,11 @@ function Logger() {
 }
 
 function init() {
+
+     if [ ! -d $strCertifyConfigFolder ]; then
+        mkdir -p $strCertifyConfigFolder
+    fi
+
     if [ ! -f $strDefaultNginxConfig ]; then
         Logger INFO "Extract 80 Default Nginx Conifguration file"
         echo $strB64defaultNginxConfig80 | base64 --decode > $strDefaultNginxConfig
