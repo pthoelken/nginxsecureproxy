@@ -12,6 +12,7 @@ strDebugDockerComposeFile=$strDebugFolder/docker-compose.yml
 strDockerComposeURL=https://raw.githubusercontent.com/pthoelken/nginxsecureproxy/main/docker-compose.yml
 
 function BuildImage() {
+    docker builder prune -a -f 
     docker build -t $strDockerImageName .
     docker image tag $strDockerImageName $strDockerHubUsername/$strDockerImageName:$strDockerImageTag
 }
