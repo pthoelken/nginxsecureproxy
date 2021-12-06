@@ -35,11 +35,15 @@ function init() {
         echo $strB64defaultNginxConfig80 | base64 --decode > $strDefaultNginxConfig
         chown nginx:nginx $strDefaultNginxConfig
         /etc/init.d/nginx reload
+    else
+        Logger INFO "Init was already complete ..."
     fi
 
     if [ ! -f $strCertifyDefaultConfig ]; then
         Logger INFO "Extract the default 80 config file or certify"
         echo $strB64defaultNginxConfig80 | base64 --decode > $strCertifyDefaultConfig
+    else
+        Logger INFO "Init was already complete ..."
     fi
 }
 
@@ -99,6 +103,7 @@ function RegisterCertificate() {
 
 case "$1" in
         "--newcert" )
+        init
         RegisterCertificate $2 $3
         ;;
         "--init" )
