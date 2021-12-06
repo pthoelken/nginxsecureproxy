@@ -1,6 +1,6 @@
 #!/bin/bash
 
-strDate=$(date '+%d/%m/%Y %H:%M:%S')
+strDate=$(date +%Y-%m-%d)
 
 strCertifyBaseFolder=/etc/certify
 
