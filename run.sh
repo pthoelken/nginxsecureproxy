@@ -25,6 +25,11 @@ function DebugImage() {
 
     cd $strDebugFolder
 
+      if [ ! -f $strDebugFolder ]; then
+        rm -rf $strDebugFolder
+        mkdir -p $strDebugFolder
+    fi
+
     if [ -f $strDebugFolder/.git ]; then
         git pull
     else
@@ -37,12 +42,6 @@ function DebugImage() {
 
     Build
     Publish
-
-    if [ ! -f $strDebugFolder ]; then
-        rm -rf $strDebugFolder
-        mkdir -p $strDebugFolder
-    fi
-
     
     curl -Lo $strDebugDockerComposeFile $strDockerComposeURL
     docker-compose up -d
