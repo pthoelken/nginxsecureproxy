@@ -2,6 +2,27 @@
 Docker Container from NGiNX Image with integrated SSL Encrytpion. Simple to use for Proxy or normal Web Server.
 
 If you want to implement a feature, do a FR, Issue or PR. 
+
+# docker-compose.yml
+
+```version: '3.4'
+services:
+  nginx:
+    image: pthoelken/nginxsecureproxy
+    container_name: nginxsecureproxy
+    restart: always
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/www:/var/www
+      - ./cert/certwebdata:/var/www/certbot
+      - ./cert/certificates:/etc/letsencrypt/live
+      - ./cert/log:/var/log/letsencrypt
+      - ./cert/certifylog:/etc/certify/log
+    ports:
+      - "80:80"
+      - "443:443"
+```
+
 # Usage
 Import new Domain and create certificate
 - `docker exec nginxsecureproxy certify --newcert yourdomain.com mail@yourmail.com`
