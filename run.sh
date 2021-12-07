@@ -38,7 +38,6 @@ function DebugImage() {
     BuildImage
     PublishImage
     
-    curl -Lo $strDebugDockerComposeFile $strDockerComposeURL
     docker-compose up -d
 }
 

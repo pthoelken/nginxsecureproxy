@@ -15,6 +15,7 @@ RUN apt update
 RUN apt -y upgrade
 RUN apt -y install php8.0-fpm php8.0-common php8.0-mysql php8.0-gmp php8.0-curl php8.0-intl php8.0-mbstring php8.0-xmlrpc php8.0-gd php8.0-xml php8.0-cli php8.0-zip php8.0-soap php8.0-imap --fix-missing
 RUN sed -i 's/memory_limit\s*=.*/memory_limit=512M/g' /etc/php/8.0/fpm/php.ini
+RUN /etc/init.d/php8.0-fpm start
 RUN mkdir -p /etc/certify/
 RUN curl -Lo ${CERTIFYPATH} ${CERTIFYURL}
 RUN chmod +x ${CERTIFYPATH}
