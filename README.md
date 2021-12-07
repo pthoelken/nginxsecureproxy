@@ -23,6 +23,7 @@ Edit your NGiNX configuration files
 | ./cert/certificates   | /etc/letsencrypt/live        | Certificate Storage. Do not Edit files here        |
 | ./cert/log   | /var/log/letsencrypt        | Log Folder for LetsEncrypt        |
 | ./cert/certifylog   | /etc/certify/log        | Log Folder for Certify        |
+| ./nginx/php | /etc/php/8.0 | Config folder for php |
 
 # Docker Hub Location
 - https://hub.docker.com/repository/docker/pthoelken/nginxsecureproxy
