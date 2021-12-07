@@ -8,7 +8,6 @@ services:
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/www:/var/www
-      - phpfpm:/etc/php/8.0
       - ./cert/certwebdata:/var/www/certbot
       - ./cert/certificates:/etc/letsencrypt/live
       - ./cert/log:/var/log/letsencrypt
