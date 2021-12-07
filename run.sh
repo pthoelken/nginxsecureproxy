@@ -24,18 +24,14 @@ function PublishImage() {
 
 function DebugImage() {
 
-    if [ -d .git ]; then
-        git pull
-    else
-        git clone $strGitHubRepositoryURL .
-    fi
+    git pull
 
     docker-compose down
     docker image prune -a -f
     docker container prune -f
 
-    Build
-    Publish
+    BuildImage
+    PublishImage
     
     curl -Lo $strDebugDockerComposeFile $strDockerComposeURL
     docker-compose up -d
