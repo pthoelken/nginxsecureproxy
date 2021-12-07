@@ -6,8 +6,6 @@ strDockerHubUsername=pthoelken
 strDockerImageName=nginxsecureproxy
 strDockerImageTag=latest
 
-strDebugFolder=./debugging
-
 strDebugDockerComposeFile=$strDebugFolder/docker-compose.yml
 strDockerComposeURL=https://raw.githubusercontent.com/pthoelken/nginxsecureproxy/main/docker-compose.yml
 
@@ -26,14 +24,7 @@ function PublishImage() {
 
 function DebugImage() {
 
-    if [ ! -f $strDebugFolder ]; then
-        rm -rf $strDebugFolder
-        mkdir -p $strDebugFolder
-    fi
-
-    cd $strDebugFolder
-
-    if [ -f $strDebugFolder/.git ]; then
+    if [ -d .git ]; then
         git pull
     else
         git clone $strGitHubRepositoryURL .
