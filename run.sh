@@ -26,12 +26,12 @@ function PublishImage() {
 
 function DebugImage() {
 
-    cd $strDebugFolder
-
-      if [ ! -f $strDebugFolder ]; then
+    if [ ! -f $strDebugFolder ]; then
         rm -rf $strDebugFolder
         mkdir -p $strDebugFolder
     fi
+
+    cd $strDebugFolder
 
     if [ -f $strDebugFolder/.git ]; then
         git pull
