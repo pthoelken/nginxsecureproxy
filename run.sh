@@ -5,6 +5,7 @@ cd "$(dirname "$0")"
 sudo apt update
 sudo apt upgrade -y
 sudo apt install curl -y
+sudo apt autoremove -y
 
 strDockerHubUsername=pthoelken
 strDockerImageName=nginxsecureproxy
