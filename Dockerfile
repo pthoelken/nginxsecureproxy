@@ -4,7 +4,7 @@ ARG CERTIFYURL=https://raw.githubusercontent.com/pthoelken/nginxsecureproxy/main
 ARG CERTIFYPATH=/etc/certify/certify
 
 RUN apt update
-RUN apt -y install apt-transport-https language-pack-en-base
+RUN apt -y install apt-transport-https locales locales-all
 RUN apt -y install python3 cron certbot python3-certbot-nginx bash curl cl-base64 gnupg2 ca-certificates lsb-release software-properties-common
 RUN export LC_ALL=en_US.UTF-8
 RUN export LANG=en_US.UTF-8
