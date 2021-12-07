@@ -6,10 +6,12 @@ strDockerHubUsername=pthoelken
 strDockerImageName=nginxsecureproxy
 strDockerImageTag=latest
 
-strDebugFolder=./debug
+strDebugFolder=./debugging
 
 strDebugDockerComposeFile=$strDebugFolder/docker-compose.yml
 strDockerComposeURL=https://raw.githubusercontent.com/pthoelken/nginxsecureproxy/main/docker-compose.yml
+
+strGitHubRepositoryURL=git@github.com:pthoelken/nginxsecureproxy.git
 
 function BuildImage() {
     docker builder prune -a -f 
@@ -34,7 +36,7 @@ function DebugImage() {
     if [ -f $strDebugFolder/.git ]; then
         git pull
     else
-        git clone git@github.com:pthoelken/nginxsecureproxy.git .
+        git clone $strGitHubRepositoryURL .
     fi
 
     docker-compose down
@@ -60,7 +62,7 @@ case "$1" in
         PublishImage
         ;;
         *)
-        echo "Unknown argument for $0 please use {--build | --debug | --publish}"
+        echo "Unknown argument for $0 please use { --build | --debug | --publish }"
         exit 1
         ;;
 esac
