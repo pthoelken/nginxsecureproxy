@@ -1,6 +1,5 @@
 FROM nginx:stable
-
-ARG CERTIFYURL=https://raw.githubusercontent.com/pthoelken/nginxsecureproxy/main/certify/certify
+LABEL maintainer="Patrick Thoelken <me@patrick-thoelken.de>"
 ARG CERTIFYPATH=/etc/certify/certify
 
 RUN apt update
@@ -14,7 +13,7 @@ RUN apt -y install php8.0-fpm php8.0-common php8.0-mysql php8.0-gmp php8.0-curl 
 RUN sed -i 's/memory_limit\s*=.*/memory_limit=512M/g' /etc/php/8.0/fpm/php.ini
 RUN /etc/init.d/php8.0-fpm start
 RUN mkdir -p /etc/certify/
-RUN curl -Lo ${CERTIFYPATH} ${CERTIFYURL}
+COPY certify ${CERTIFYPATH}
 RUN chmod +x ${CERTIFYPATH}
 RUN ln -s ${CERTIFYPATH} /usr/bin/certify
 RUN chmod +x /usr/bin/certify
