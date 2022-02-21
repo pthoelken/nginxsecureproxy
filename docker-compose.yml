@@ -6,12 +6,12 @@ services:
     container_name: nginxsecureproxy
     restart: always
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/www:/var/www
-      - ./cert/certwebdata:/var/www/certbot
-      - ./cert/certificates:/etc/letsencrypt/live
-      - ./cert/log:/var/log/letsencrypt
-      - ./cert/certifylog:/etc/certify/log
+      - ./nginxssl/nginx/conf.d:/etc/nginx/conf.d
+      - ./nginxssl/nginx/www:/var/www
+      - ./nginxssl/cert/certwebdata:/var/www/certbot
+      - ./nginxssl/cert/certificates:/etc/letsencrypt/live
+      - ./nginxssl/cert/log:/var/log/letsencrypt
+      - ./nginxssl/cert/certifylog:/etc/certify/log
     ports:
       - "80:80"
       - "443:443"
