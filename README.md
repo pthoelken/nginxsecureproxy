@@ -32,7 +32,7 @@ Reload NGiNX Configurations
 - `docker exec nginxsecureproxy certify --reload`
 
 Edit your NGiNX configuration files
-- ./nginx/conf.d/*
+- ./nginxssl/nginx/conf.d/*
 - Just add your own files. Do not edit system files.
 
 # Explaination
