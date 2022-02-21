@@ -6,18 +6,19 @@ If you want to implement a feature, do a FR, Issue or PR.
 # docker-compose.yml
 
 ```version: '3.4'
+
 services:
   nginx:
     image: pthoelken/nginxsecureproxy
     container_name: nginxsecureproxy
     restart: always
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/www:/var/www
-      - ./cert/certwebdata:/var/www/certbot
-      - ./cert/certificates:/etc/letsencrypt/live
-      - ./cert/log:/var/log/letsencrypt
-      - ./cert/certifylog:/etc/certify/log
+      - ./nginxssl/nginx/conf.d:/etc/nginx/conf.d
+      - ./nginxssl/nginx/www:/var/www
+      - ./nginxssl/cert/certwebdata:/var/www/certbot
+      - ./nginxssl/cert/certificates:/etc/letsencrypt/live
+      - ./nginxssl/cert/log:/var/log/letsencrypt
+      - ./nginxssl/cert/certifylog:/etc/certify/log
     ports:
       - "80:80"
       - "443:443"
@@ -38,13 +39,13 @@ Edit your NGiNX configuration files
 
 | Local Folder      | Container Mapping | Description |
 | ----------- | ----------- | ----------- |
-| ./nginx/conf.d      | /etc/nginx/conf.d       | Configuration Folder for NGiNX Server      |
-| ./nginx/www   | /var/www        | www Folder for Domains        |
-| ./cert/certwebdata   | /var/www/certbot        | Data folder for Certificates. Do not Edit files here        |
-| ./cert/certificates   | /etc/letsencrypt/live        | Certificate Storage. Do not Edit files here        |
-| ./cert/log   | /var/log/letsencrypt        | Log Folder for LetsEncrypt        |
-| ./cert/certifylog   | /etc/certify/log        | Log Folder for Certify        |
-| ./nginx/php | /etc/php/8.0 | Config folder for php |
+| ./nginxssl/nginx/conf.d      | /etc/nginx/conf.d       | Configuration Folder for NGiNX Server      |
+| ./nginxssl/nginx/www   | /var/www        | www Folder for Domains        |
+| ./nginxssl/cert/certwebdata   | /var/www/certbot        | Data folder for Certificates. Do not Edit files here        |
+| ./nginxssl/cert/certificates   | /etc/letsencrypt/live        | Certificate Storage. Do not Edit files here        |
+| ./nginxssl/cert/log   | /var/log/letsencrypt        | Log Folder for LetsEncrypt        |
+| ./nginxssl/cert/certifylog   | /etc/certify/log        | Log Folder for Certify        |
+| ./nginxssl/nginx/php | /etc/php/8.0 | Config folder for php |
 
 # Docker Hub Location
 - https://hub.docker.com/repository/docker/pthoelken/nginxsecureproxy
