@@ -49,3 +49,6 @@ Edit your NGiNX configuration files
 
 # Docker Hub Location
 - https://hub.docker.com/r/pthoelken/nginxsecureproxy
+
+# GitHub Project Page
+* https://github.com/pthoelken/nginxsecureproxy
