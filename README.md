@@ -48,4 +48,4 @@ Edit your NGiNX configuration files
 | ./nginxssl/nginx/php | /etc/php/8.0 | Config folder for php |
 
 # Docker Hub Location
-- https://hub.docker.com/repository/docker/pthoelken/nginxsecureproxy
+- https://hub.docker.com/r/pthoelken/nginxsecureproxy
