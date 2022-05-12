@@ -1,4 +1,4 @@
-FROM nginx:stable
+FROM nginx:1.20
 LABEL maintainer="Patrick Thoelken <me@patrick-thoelken.de>"
 ARG CERTIFYPATH=/etc/certify/certify
 
